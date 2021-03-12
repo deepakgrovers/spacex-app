@@ -1,0 +1,99 @@
+<section class="body-app container-fluid">
+  <h2 class="display-5 d-flex justify-content-center">SpaceX Launch Programs</h2>
+  <div class="row row-mark">
+      <div class="col-12 col-md-3 filters">
+          <h3 class="title-bar">Filters</h3>
+          <div class="d-flex justify-content-center launch">Launch Year</div>
+          <div class="launch-btns">
+              <div class="d-flex">
+                  <a class="links mb-2" href="#" [ngClass]="{'active': data.selectYear === 2006}" role="button" (click) = "getYear(2006)" >2006</a>
+                  <a class="links mb-2 ml-auto" href="#" [ngClass]="{'active': data.selectYear === 2007}" role="button" (click) = "getYear(2007)" >2007</a>
+              </div>
+              <div class="d-flex">
+                  <a class="links mb-2" href="#" [ngClass]="{'active': data.selectYear === 2008}" role="button" (click) = "getYear(2008)" >2008</a>
+                  <a class="links mb-2 ml-auto" href="#" [ngClass]="{'active': data.selectYear === 2009}" role="button" (click) = "getYear(2009)" >2009</a>
+              </div>
+              <div class="d-flex">
+                  <a class="links mb-2" href="#" [ngClass]="{'active': data.selectYear === 2010}" role="button" (click) = "getYear(2010)" >2010</a>
+                  <a class="links mb-2 ml-auto" href="#" role="button" (click) = "getYear(2011)" >2011</a>
+              </div>
+              <div class="d-flex">
+                  <a class="links mb-2" href="#" [ngClass]="{'active': data.selectYear === 2012}" role="button" (click) = "getYear(2012)" >2012</a>
+                  <a class="links mb-2 ml-auto" href="#" [ngClass]="{'active': data.selectYear === 2013}" role="button" (click) = "getYear(2013)" >2013</a>
+              </div>
+              <div class="d-flex">
+                  <a class="links mb-2" href="#" [ngClass]="{'active': data.selectYear === 2014}" role="button" (click) = "getYear(2014)" >2014</a>
+                  <a class="links mb-2 ml-auto" href="#"  [ngClass]="{'active': data.selectYear === 2015}" role="button" (click) = "getYear(2015)" >2015</a>
+              </div>
+              <div class="d-flex">
+                  <a class="links mb-2" href="#" [ngClass]="{'active': data.selectYear === 2016}" role="button" (click) = "getYear(2016)" >2016</a>
+                  <a class="links mb-2 ml-auto" href="#" [ngClass]="{'active': data.selectYear === 2017}" role="button" (click) = "getYear(2017)" >2017</a>
+              </div>
+              <div class="d-flex">
+                  <a class="links mb-2" href="#" [ngClass]="{'active': data.selectYear === 2018}" role="button" (click) = "getYear(2018)" >2018</a>
+                  <a class="links mb-2 ml-auto" href="#" [ngClass]="{'active': data.selectYear === 2020}" role="button" (click) = "getYear(2019)" >2019</a>
+              </div>
+              <div class="d-flex">
+                  <a class="links mb-2" href="#" [ngClass]="{'active': data.selectYear === 2021}" role="button" (click) = "getYear(2020)" >2020</a>
+              </div>
+          </div>
+          <div class="d-flex justify-content-center launch">Successful Launch</div>
+          <div class="launch-btns">
+              <div class="d-flex">
+                  <a class="links mb-2" href="#" [ngClass]="{'active': data.launchType === 'true'}" role="button" (click) = "getLaunch('true')" >True</a>
+                  <a class="links mb-2 ml-auto" href="#" [ngClass]="{'active': data.launchType === 'false'}" role="button" (click) = "getLaunch('false')" >False</a>
+              </div>
+          </div>
+          <div class="d-flex justify-content-center mt-2 launch">Successful Landing</div>
+          <div class="launch-btns">
+              <div class="d-flex">
+                  <a class="links mb-2" href="#" [ngClass]="{'active': data.successType === 'true'}" role="button" (click) = "getLand('true')" >True</a>
+                  <a class="links mb-2 ml-auto" href="#" [ngClass]="{'active': data.successType === 'false'}" role="button" (click) = "getLand('false')" >False</a>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-9 launch-cards">
+          <div class="row row-mark justify-content-between">
+
+              <!--Card Body starts -->
+              <div *ngFor='let launch of launches' class="card-body">
+                <div class="card-image">
+                  <img class="img-fluid" src={{launch.links.mission_patch_small}} alt="Card image">
+                </div>
+                <h5 class="card-titlebar mt-3 mb-3" title='{{launch.mission_name}} #{{launch.flight_number}}'>{{launch.mission_name}} #{{launch.flight_number}}</h5>
+                <div class="card-data">
+                    <div class="mission-ids"> 
+                      <h6 class="display-9">Mission IDs:</h6>
+                        <ul >
+                          <li *ngFor='let mission_id of launch.mission_id'>{{mission_id}}</li>
+                        </ul>
+                    </div>
+                    <div class="launch-yr">
+                      <h6 class="display-9">Launch Year:</h6>
+                      <span class="lnch-yr">{{launch.launch_year}}</span> 
+                    </div>
+                    <div class="sucess-lanuch">
+                      <h6 class="display-9">Sucessful Launch:</h6>
+                      <span class="lnch-sucs">{{launch.launch_success}}</span> 
+                    </div>
+                    <div class="sucess-land">
+                      <h6 class="display-9">Sucessful Landing:</h6>
+                      <span class="land-sucs">{{launch.rocket.first_stage.cores[0].land_success}}</span> 
+                    </div>
+                </div>
+              </div>
+              </div>
+              </div>
+  </div>
+  <footer class="mt-3 mb-2 text-center">
+      <h6 class="developer">Developed By:</h6> <span> Deepak grover</span>
+    </footer>
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+      <p style="color: white">Please Wait. </p>  
+      </ngx-spinner>   
+</section>
+<!-- <app-launch-detail  class="col-sm-9"></app-launch-detail> -->
+
+
+
+<router-outlet></router-outlet>
